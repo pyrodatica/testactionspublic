@@ -1,0 +1,28 @@
+name: Template - Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      github_environment:
+        description: The GitHub environment to deploy to.
+        required: true
+        type: environment
+
+jobs:
+  test_secrets:
+    name: Test Secrets
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.github_environment }}
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it.
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # TEMP TO REMOVE
+      - name: Ensure secret setup correctly
+        env:
+          DEV_SECRET: ${{ secrets.DEVSECRET }}
+        run: echo $DEV_SECRET | sed 's/./& /g' 
+
+      - name: Ensure secret setup correctly continue
+        run: echo ${{ env.DEVVARIABLE }} | sed 's/./& /g'
