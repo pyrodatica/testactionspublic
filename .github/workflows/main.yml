@@ -44,5 +44,8 @@ jobs:
       - name: Get org value in quotes
         run: echo "${{ vars.ORGVARIABLE }}"
 
+      - name: Get Org Variable from Dev Variable with resubstitution
+        run: echo ${{ ${{ vars.DEVVARIABLE2 }} }}
+
       - name: Get Org Variable from Dev Variable
         run: echo ${{ vars.DEVVARIABLE2 }}
