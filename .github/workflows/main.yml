@@ -35,5 +35,11 @@ jobs:
           DEV_VARIABLE: ${{ vars.DEVVARIABLE2 }}
         run: echo $DEV_VARIABLE
 
+      - name: Get Org Variable from Dev Variable with ENV2
+        env:
+          DEV_VARIABLE: ${{ vars.DEVVARIABLE2 }}
+          ORG_VARIABLE: ${{ DEV_VARIABLE }}
+        run: echo $ORG_VARIABLE
+
       - name: Get Org Variable from Dev Variable
         run: echo ${{ vars.DEVVARIABLE2 }}
