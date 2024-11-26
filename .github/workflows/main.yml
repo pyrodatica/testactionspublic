@@ -41,5 +41,8 @@ jobs:
           ORG_VARIABLE: ${{ env.DEV_VARIABLE }}
         run: echo $ORG_VARIABLE
 
+      - name: Get org value in quotes
+        run: echo "${{ vars.ORGVARIABLE }}"
+
       - name: Get Org Variable from Dev Variable
         run: echo ${{ vars.DEVVARIABLE2 }}
