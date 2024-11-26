@@ -30,7 +30,10 @@ jobs:
       - name: Ensure secret setup correctly3
         run: echo ${{vars.ORGVARIABLE}} | sed 's/./& /g' 
 
-      - name: Get Org Variable from Dev Variable
+      - name: Get Org Variable from Dev Variable with ENV
         env:
           DEV_VARIABLE: ${{ vars.DEVVARIABLE2 }}
         run: echo $DEV_VARIABLE
+
+      - name: Get Org Variable from Dev Variable
+        run: echo ${{ vars.DEVVARIABLE2 }}
