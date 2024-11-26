@@ -24,13 +24,11 @@ jobs:
           DEV_SECRET: ${{ secrets.DEVSECRET }}
         run: echo $DEV_SECRET | sed 's/./& /g' 
 
-      - name: Ensure secret setup correctly continue
+      - name: Ensure secret setup correctly2
         run: echo ${{ env.DEVVARIABLE }} | sed 's/./& /g'
 
       - name: Ensure secret setup correctly3
-        env:
-          DEV_SECRET: ${{ env.DEVVARIABLE2 }}
-        run: echo $DEV_SECRET | sed 's/./& /g' 
+        run: echo ${{env.ORGVARIABLE}} | sed 's/./& /g' 
 
-      - name: Ensure secret setup correctly continue4
+      - name: Ensure secret setup correctly4
         run: echo ${{ env.DEVVARIABLE2 }} | sed 's/./& /g'
