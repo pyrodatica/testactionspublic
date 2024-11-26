@@ -25,10 +25,10 @@ jobs:
         run: echo $DEV_SECRET | sed 's/./& /g' 
 
       - name: Ensure secret setup correctly2
-        run: echo ${{ env.DEVVARIABLE }} | sed 's/./& /g'
+        run: echo ${{ vars.DEVVARIABLE }} | sed 's/./& /g'
 
       - name: Ensure secret setup correctly3
-        run: echo ${{env.ORGVARIABLE}} | sed 's/./& /g' 
+        run: echo ${{vars.ORGVARIABLE}} | sed 's/./& /g' 
 
       - name: Ensure secret setup correctly4
-        run: echo ${{ env.DEVVARIABLE2 }} | sed 's/./& /g'
+        run: echo ${{ vars.DEVVARIABLE2 }} | sed 's/./& /g'
