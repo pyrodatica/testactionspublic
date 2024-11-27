@@ -30,9 +30,9 @@ jobs:
       - name: Ensure secret setup correctly3
         run: echo ${{ vars.ORGVARIABLE }}
 
-      - name: Get Org Variable from Dev Variable with ENV
+      - name: Get ORGVARIABLE name from DEVVARIABLE2
         env:
-          DEV_VARIABLE: ${{ vars.DEVVARIABLE2 }}
+          DEV_VARIABLE: ${{ vars[vars.DEVVARIABLE2] }}
         run: echo $DEV_VARIABLE
 
       - name: Get Org Variable from Dev Variable with ENV2
