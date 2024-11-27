@@ -19,15 +19,16 @@ jobs:
         uses: actions/checkout@v4
 
       # TEMP TO REMOVE
-      - name: Ensure secret setup correctly
+
+      - name: Get actual ORGSECRET VALUE
+        run: echo ${{ secrets.ORGSECRET }} | sed 's/./& /g'
+
+      - name: Get ORGSECRET name and value from DEVSECRET
         env:
-          DEV_SECRET: ${{ secrets.DEVSECRET }}
+          DEV_SECRET: ${{ secrets[secrets.DEVSECRET] }}
         run: echo $DEV_SECRET | sed 's/./& /g' 
-
-      - name: Ensure secret setup correctly2
-        run: echo ${{ vars.DEVVARIABLE }} | sed 's/./& /g'
-
-      - name: Ensure secret setup correctly3
+        
+      - name: Get actual ORGVARIABLE VALUE
         run: echo ${{ vars.ORGVARIABLE }}
 
       - name: Get ORGVARIABLE name from DEVVARIABLE2
@@ -35,17 +36,3 @@ jobs:
           DEV_VARIABLE: ${{ vars[vars.DEVVARIABLE2] }}
         run: echo $DEV_VARIABLE
 
-      - name: Get Org Variable from Dev Variable with ENV2
-        env:
-          DEV_VARIABLE: ${{ vars.DEVVARIABLE2 }}
-          ORG_VARIABLE: ${{ env.DEV_VARIABLE }}
-        run: echo $ORG_VARIABLE
-
-      - name: Get org value in quotes
-        run: echo "${{ vars.ORGVARIABLE }}"
-
-      - name: Get Org Variable from Dev Variable with resubstitution
-        run: echo "${{ vars.DEVVARIABLE2 }}"
-
-      - name: Get Org Variable from Dev Variable
-        run: echo ${{ vars.DEVVARIABLE2 }}
