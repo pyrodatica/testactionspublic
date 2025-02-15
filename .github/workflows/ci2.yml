@@ -9,5 +9,5 @@ jobs:
     uses: ./.github/workflows/self.yml
     with:
       environment: dev
-      is_self: false
+      self: 'first'
     secrets: inherit

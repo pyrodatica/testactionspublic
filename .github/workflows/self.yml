@@ -8,11 +8,10 @@ on:
         description: 'Environment'
         required: true
         default: 'dev'
-      is_self:
-        type: boolean
+      self:
+        type: string
         description: 'Is self'
         required: true
-        default: false
 
 jobs:
   variables:
@@ -32,10 +31,10 @@ jobs:
 
   call_self:
     name: call self
-    if: ${{ ! inputs.is_self }}
+    if: ${{ inputs.self == 'first' }}
     needs: variables
     uses: ./.github/workflows/self.yml
     with:
       environment: test
-      is_self: true
+      self: 'second'
     secrets: inherit
