@@ -26,21 +26,21 @@ jobs:
     secrets: inherit
     
   prod:
-    name: prod
+    name: prod1
     uses: ./.github/workflows/caller.yml
     with:
       environment: prod
     secrets: inherit    
 
   prod2:
-    name: prod
+    name: prod2
     uses: ./.github/workflows/caller.yml
     with:
       environment: prod
     secrets: inherit    
   
   prod3:
-    name: prod
+    name: prod3
     uses: ./.github/workflows/caller.yml
     with:
       environment: prod
