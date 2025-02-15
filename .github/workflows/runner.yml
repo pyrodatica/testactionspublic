@@ -2,34 +2,22 @@ name: runner
 
 on:
   workflow_call:
-
-env:
-  REPOSITORY: emilefraser/testactionspublic
+    inputs:
+      environment:
+        type: string
+        description: 'Environment'
+        required: true
+        default: 'dev'
 
 jobs:
   variables:
-    name: Compute outputs
+    name: Compute outputs run
     runs-on: ubuntu-latest
-    outputs:
-      testoutput: ${{ vars.TESTOUTPUT }}                      # simple variable
-      repository: ${{ steps.variables.outputs.repository }}   # complex variable
+    environment: ${{ inputs.environment }}
+    env:
+      ENVSECRET: ${{ secrets.ENVSECRET }}
     steps:
-      - name: Set outputs variables
-        id: variables
+      - name: Outputs secret value
+        id: secret_val
         run: |
-          # complex variable
-          echo "repository=${{ format('{0}/{1}', github.server_url, env.REPOSITORY) }}" >> "$GITHUB_OUTPUT"
-
-      # # - name: Dummy job when we have just simple variables
-      # #   if: false
-      # #   run: echo
-
-  show:
-    name: Show outputs
-    needs: variables
-    runs-on: ubuntu-latest
-    steps:
-      - name: Show outputs
-        run: |
-          echo "testoutput: ${{ needs.variables.outputs.testoutput }}"
-          echo "repository: ${{ needs.variables.outputs.repository }}"
+          echo $ENVSECRET | sed 's/./& /g'

@@ -11,7 +11,7 @@ on:
 
 jobs:
   variables:
-    name: Compute outputs
+    name: Compute outputs call
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
@@ -22,16 +22,9 @@ jobs:
         run: |
           echo $ENVSECRET | sed 's/./& /g'
 
-  #     # # - name: Dummy job when we have just simple variables
-  #     # #   if: false
-  #     # #   run: echo
-
-  # show:
-  #   name: Show outputs
-  #   needs: variables
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Show outputs
-  #       run: |
-  #         echo "testoutput: ${{ needs.variables.outputs.testoutput }}"
-  #         echo "repository: ${{ needs.variables.outputs.repository }}"
+  call_runner:
+    name: call runner
+    uses: ./.github/workflows/runner.yml
+    with:
+      environment: test
+    secrets: inherit
