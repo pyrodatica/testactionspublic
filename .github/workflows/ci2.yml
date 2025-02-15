@@ -1,0 +1,13 @@
+name: ci
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dev:
+    name: dev
+    uses: ./.github/workflows/self.yml
+    with:
+      environment: dev
+      is_self: false
+    secrets: inherit

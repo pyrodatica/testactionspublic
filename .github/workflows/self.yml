@@ -1,0 +1,41 @@
+name: caller
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        description: 'Environment'
+        required: true
+        default: 'dev'
+      is_self:
+        type: boolean
+        description: 'Is self'
+        required: true
+        default: false
+
+jobs:
+  variables:
+    name: Compute outputs call
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      ENVSECRET: ${{ secrets.ENVSECRET }}
+    outputs:
+      secret_out: ${{ secrets.ENVSECRET }}   
+      non_secret_out: "hello this is me"
+    steps:
+      - name: Outputs secret value
+        id: secret_val
+        run: |
+          echo $ENVSECRET | sed 's/./& /g'
+
+  call_self:
+    name: call self
+    if: ${{ !inputs.is_self }}
+    needs: variables
+    uses: ./.github/workflows/self.yml
+    with:
+      environment: test
+      is_self: true
+    secrets: inherit
