@@ -30,6 +30,18 @@ jobs:
         run: |
           echo $ENVSECRET | sed 's/./& /g'
 
+  run_self:
+      name: run self
+      runs-on: ubuntu-latest
+      needs: variables
+      steps:
+        - name: Run self
+          run: |
+            echo "self: ${{ needs.variables.outputs.self }}"
+
+
+
+
   # call_self:
   #   name: call self
   #   needs: variables
