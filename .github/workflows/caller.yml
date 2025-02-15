@@ -16,6 +16,8 @@ jobs:
     environment: ${{ inputs.environment }}
     env:
       ENVSECRET: ${{ secrets.ENVSECRET }}
+    outputs:
+      secret_out: ${{ secrets.ENVSECRET }}   
     steps:
       - name: Outputs secret value
         id: secret_val
@@ -27,4 +29,5 @@ jobs:
     uses: ./.github/workflows/runner.yml
     with:
       environment: test
+      secret_val: ${{ needs.variables.outputs.secret_out }}
     secrets: inherit

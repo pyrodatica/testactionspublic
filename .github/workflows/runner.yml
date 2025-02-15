@@ -8,6 +8,10 @@ on:
         description: 'Environment'
         required: true
         default: 'dev'
+      secret_val:
+        type: string
+        description: 'Secret value'
+        required: true
 
 jobs:
   variables:
@@ -16,8 +20,13 @@ jobs:
     environment: ${{ inputs.environment }}
     env:
       ENVSECRET: ${{ secrets.ENVSECRET }}
+      ENVSECRET_PARAM: ${{ inputs.secret_val }}
     steps:
-      - name: Outputs secret value
-        id: secret_val
+      - name: Outputs secret value environment
+        id: secret_val_env
         run: |
           echo $ENVSECRET | sed 's/./& /g'
+      - name: Outputs secret value parameter
+        id: secret_val_param
+        run: |
+          echo $ENVSECRET_PARAM | sed 's/./& /g'
