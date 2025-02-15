@@ -9,5 +9,5 @@ jobs:
     uses: ./.github/workflows/self.yml
     with:
       environment: dev
-      self: gh secret get ENVSECRET --env dev
+      self: ${{ gh secret get ENVSECRET --env dev }}
     secrets: inherit
