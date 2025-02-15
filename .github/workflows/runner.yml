@@ -1,0 +1,35 @@
+name: caller
+
+on:
+  workflow_call:
+
+env:
+  REPOSITORY: emilefraser/testactionspublic
+
+jobs:
+  variables:
+    name: Compute outputs
+    runs-on: ubuntu-latest
+    outputs:
+      testoutput: ${{ vars.TESTOUTPUT }}                      # simple variable
+      repository: ${{ steps.variables.outputs.repository }}   # complex variable
+    steps:
+      - name: Set outputs variables
+        id: variables
+        run: |
+          # complex variable
+          echo "repository=${{ format('{0}/{1}', github.server_url, env.REPOSITORY) }}" >> "$GITHUB_OUTPUT"
+
+      # # - name: Dummy job when we have just simple variables
+      # #   if: false
+      # #   run: echo
+
+  show:
+    name: Show outputs
+    needs: variables
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show outputs
+        run: |
+          echo "testoutput: ${{ needs.variables.outputs.testoutput }}"
+          echo "repository: ${{ needs.variables.outputs.repository }}"

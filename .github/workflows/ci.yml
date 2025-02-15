@@ -1,0 +1,12 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dev:
+    name: dev
+    uses: ./.github/workflows/caller.yml
+    with:
+      environment: dev
+    secrets: inherit

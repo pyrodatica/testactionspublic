@@ -1,0 +1,37 @@
+name: caller
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        description: 'Environment'
+        required: true
+        default: 'dev'
+
+jobs:
+  variables:
+    name: Compute outputs
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      ENVSECRET: ${{ secrets.ENVSECRET }}
+    steps:
+      - name: Outputs secret value
+        id: secret_val
+        run: |
+          echo $ENVSECRET | sed 's/./& /g'
+
+  #     # # - name: Dummy job when we have just simple variables
+  #     # #   if: false
+  #     # #   run: echo
+
+  # show:
+  #   name: Show outputs
+  #   needs: variables
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Show outputs
+  #       run: |
+  #         echo "testoutput: ${{ needs.variables.outputs.testoutput }}"
+  #         echo "repository: ${{ needs.variables.outputs.repository }}"
