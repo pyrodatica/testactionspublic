@@ -30,12 +30,12 @@ jobs:
         run: |
           echo $ENVSECRET | sed 's/./& /g'
 
-  call_self:
-    name: call self
-    if: ${{ needs.variables.outputs.self == 'first' }}
-    needs: variables
-    uses: ./.github/workflows/self.yml
-    with:
-      environment: test
-      self: 'second'
-    secrets: inherit
+  # call_self:
+  #   name: call self
+  #   needs: variables
+  #   if: ${{ needs.variables.outputs.self == 'first' }}
+  #   uses: ./.github/workflows/self.yml
+  #   with:
+  #     environment: test
+  #     self: 'second'
+  #   secrets: inherit
