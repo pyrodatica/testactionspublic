@@ -26,6 +26,7 @@ jobs:
 
   call_runner:
     name: call runner
+    needs: variables
     uses: ./.github/workflows/runner.yml
     with:
       environment: test
