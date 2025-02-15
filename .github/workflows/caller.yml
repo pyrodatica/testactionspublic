@@ -18,6 +18,7 @@ jobs:
       ENVSECRET: ${{ secrets.ENVSECRET }}
     outputs:
       secret_out: ${{ secrets.ENVSECRET }}   
+      non_secret_out: "hello this is me"
     steps:
       - name: Outputs secret value
         id: secret_val
@@ -31,4 +32,5 @@ jobs:
     with:
       environment: test
       secret_val: ${{ needs.variables.outputs.secret_out }}
+      non_secret_out: ${{ needs.variables.outputs.non_secret_out }}
     secrets: inherit

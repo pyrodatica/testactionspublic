@@ -12,6 +12,10 @@ on:
         type: string
         description: 'Secret value'
         required: true
+      non_secret_out:
+        type: string
+        description: 'Non secret value'
+        required: true
 
 jobs:
   variables:
@@ -21,6 +25,7 @@ jobs:
     env:
       ENVSECRET: ${{ secrets.ENVSECRET }}
       ENVSECRET_PARAM: ${{ inputs.secret_val }}
+      ENVNONSECRET_PARAM: ${{ inputs.non_secret_out }}
     steps:
       - name: Outputs secret value environment
         id: secret_val_env
@@ -30,3 +35,7 @@ jobs:
         id: secret_val_param
         run: |
           echo $ENVSECRET_PARAM | sed 's/./& /g'
+      - name: Outputs non secret value
+        id: non_secret_val_param
+        run: |
+          echo $ENVNONSECRET_PARAM | sed 's/./& /g'
