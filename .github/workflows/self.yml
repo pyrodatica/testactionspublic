@@ -32,7 +32,7 @@ jobs:
 
   call_self:
     name: call self
-    if: ${{ !inputs.is_self }}
+    if: ${{ inputs.is_self == false }}
     needs: variables
     uses: ./.github/workflows/self.yml
     with:
