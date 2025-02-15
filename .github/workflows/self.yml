@@ -23,6 +23,7 @@ jobs:
     outputs:
       secret_out: ${{ secrets.ENVSECRET }}   
       non_secret_out: "hello this is me"
+      self: ${{ inputs.self }}
     steps:
       - name: Outputs secret value
         id: secret_val
@@ -31,7 +32,7 @@ jobs:
 
   call_self:
     name: call self
-    if: ${{ inputs.self == 'first' }}
+    if: ${{ needs.variables.outputs.self == 'first' }}
     needs: variables
     uses: ./.github/workflows/self.yml
     with:
