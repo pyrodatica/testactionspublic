@@ -1,4 +1,4 @@
-name: caller
+name: self
 
 on:
   workflow_call:
