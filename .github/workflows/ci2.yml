@@ -1,4 +1,4 @@
-name: ci2
+name: ci_self
 
 on:
   workflow_dispatch:
