@@ -31,3 +31,17 @@ jobs:
     with:
       environment: prod
     secrets: inherit    
+
+  prod2:
+    name: prod
+    uses: ./.github/workflows/caller.yml
+    with:
+      environment: prod
+    secrets: inherit    
+  
+  prod3:
+    name: prod
+    uses: ./.github/workflows/caller.yml
+    with:
+      environment: prod
+    secrets: inherit          
