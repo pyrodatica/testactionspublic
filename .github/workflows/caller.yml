@@ -30,7 +30,7 @@ jobs:
 
           TOKEN1="${ENVSECRET}"
           echo "::add-mask::$TOKEN1"
-          echo "TOKEN1=$TOKEN1"
+          echo "TOKEN1=$TOKEN1" >> $GITHUB_OUTPUT
           
           
           #echo "::set-output name=some-token::$TOKEN1"
