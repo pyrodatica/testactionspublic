@@ -4,7 +4,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  dev:
+
+  test_secrets:
+    name: Test Secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: getsecret
+        run: |
+          my_secret=gh secret get ENVSECRET --env dev
+      
+        dev:
     name: dev
     uses: ./.github/workflows/self.yml
     with:

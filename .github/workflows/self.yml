@@ -12,6 +12,10 @@ on:
         type: string
         description: 'Is self'
         required: true
+    secrets: 
+      creds:
+        required: true
+
 
 jobs:
   variables:
