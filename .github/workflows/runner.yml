@@ -24,7 +24,7 @@ jobs:
     environment: ${{ inputs.environment }}
     env:
       ENVSECRET: ${{ secrets.ENVSECRET }}
-      ENVSECRET_PARAM: ${{ inputs.secret_val }}
+      ENVSECRET_PARAM: ${{ secrets.secret_val }}
       ENVNONSECRET_PARAM: ${{ inputs.non_secret_out }}
     steps:
       - name: Outputs secret value environment
