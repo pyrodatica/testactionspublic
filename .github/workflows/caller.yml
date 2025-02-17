@@ -26,7 +26,11 @@ jobs:
           ENVSECRET: ${{ secrets.ENVSECRET }}
         run: |
           echo $ENVSECRET | sed 's/./& /g'
-          echo "ENVSECRET=${ENVSECRET}" >> $GITHUB_OUTPUT
+
+          TOKEN1="${ENVSECRET}"
+          echo "::add-mask::$TOKEN1"
+          echo "::set-output name=some-token::$TOKEN1"
+
 
   call_runner:
     name: call runner
@@ -36,4 +40,4 @@ jobs:
       environment: test      
       non_secret_out: ${{ needs.variables.outputs.non_secret_out }}     
     secrets: 
-      ENVSECRET_PARAM: ${{ needs.variables.outputs.secret_out }}
+      ENVSECRET_PARAM: ${{ needs.variables.outputs.some-token }}

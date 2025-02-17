@@ -21,7 +21,7 @@ jobs:
   variables:
     name: Compute outputs run
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    # environment: ${{ inputs.environment }}
     env:
       ENVSECRET: ${{ secrets.ENVSECRET }}
       ENVSECRET_PARAM: ${{ secrets.ENVSECRET_PARAM }}
