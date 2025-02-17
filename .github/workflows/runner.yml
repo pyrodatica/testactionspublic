@@ -12,16 +12,12 @@ on:
         type: string
         description: 'Non secret value'
         required: true
-    secrets:
-      secret_val:
-        required: true
-        description: 'Secret value'
 
 jobs:
   variables:
     name: Compute outputs run
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    #environment: ${{ inputs.environment }}
     env:
       ENVSECRET: ${{ secrets.ENVSECRET }}
       ENVSECRET_PARAM: ${{ secrets.secret_val }}

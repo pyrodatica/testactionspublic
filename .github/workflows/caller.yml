@@ -31,7 +31,7 @@ jobs:
     uses: ./.github/workflows/runner.yml
     with:
       environment: test      
-      non_secret_out: ${{ needs.variables.outputs.non_secret_out }}
-      
-    secrets: 
-      secret_val: ${{ needs.variables.outputs.secret_out }}
+      non_secret_out: ${{ needs.variables.outputs.non_secret_out }}     
+    # secrets: 
+    #   secret_val: ${{ needs.variables.outputs.secret_out }}
+    secrets: inherit
