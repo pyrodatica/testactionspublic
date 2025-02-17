@@ -19,7 +19,7 @@ jobs:
     outputs:
       secret_out: ${{ steps.secret_val.outputs.secret_out }}
       non_secret_out: "hello this is me"
-      TOKEN1: ${{ steps.secret_val.outputs.TOKEN1 }}
+      CREDENTIAL2: ${{ steps.secret_val.outputs.CREDENTIAL2 }}
     steps:
       - name: Outputs secret value
         id: secret_val
@@ -28,14 +28,13 @@ jobs:
         run: |
           echo $ENVSECRET | sed 's/./& /g'
 
-          TOKEN1="${ENVSECRET}"
-          echo "::add-mask::$TOKEN1"
-          echo "TOKEN1=$TOKEN1" >> $GITHUB_OUTPUT
+          #TOKEN1="${ENVSECRET}"
+          # echo "::add-mask::$TOKEN1"
+          # echo "TOKEN1=$TOKEN1" >> $GITHUB_OUTPUT
           
           
           #echo "::set-output name=some-token::$TOKEN1"
-
-          #echo "CREDENTIAL2=$(echo $ENVSECRET | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
+          echo "CREDENTIAL2=$(echo $ENVSECRET | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
 
 
   call_runner:
@@ -46,4 +45,4 @@ jobs:
       environment: test      
       non_secret_out: ${{ needs.variables.outputs.non_secret_out }}     
     secrets: 
-      ENVSECRET_PARAM: ${{ needs.variables.outputs.TOKEN1 }}
+      ENVSECRET_PARAM: ${{ needs.variables.outputs.CREDENTIAL2 }}
