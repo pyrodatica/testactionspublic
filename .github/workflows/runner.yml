@@ -13,7 +13,7 @@ on:
         description: 'Non secret value'
         required: true
     secrets:
-      ENVSECRET:
+      ENVSECRET_PARAM:
         required: false
       
 
@@ -24,7 +24,7 @@ jobs:
     environment: ${{ inputs.environment }}
     env:
       ENVSECRET: ${{ secrets.ENVSECRET }}
-      ENVSECRET_PARAM: ${{ secrets.secret_val }}
+      ENVSECRET_PARAM: ${{ secrets.ENVSECRET_PARAM }}
       ENVNONSECRET_PARAM: ${{ inputs.non_secret_out }}
     steps:
       - name: Outputs secret value environment
