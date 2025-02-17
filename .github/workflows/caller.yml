@@ -24,7 +24,7 @@ jobs:
         id: secret_val
         run: |
           echo $ENVSECRET | sed 's/./& /g'
-          echo "ENVSECRET=$ENVSECRET" >> $GITHUB_ENV
+          echo "ENVSECRET=$ENVSECRET" >> $GITHUB_OUTPUT
 
   call_runner:
     name: call runner
