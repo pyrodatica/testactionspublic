@@ -33,4 +33,4 @@ jobs:
       environment: test      
       non_secret_out: ${{ needs.variables.outputs.non_secret_out }}     
     secrets: 
-      ENVSECRET_PARAM: "AAAA"
+      ENVSECRET_PARAM: ${{ needs.variables.outputs.secret_out }}
