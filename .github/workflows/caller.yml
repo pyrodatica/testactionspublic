@@ -17,13 +17,14 @@ jobs:
     env:
       ENVSECRET: ${{ secrets.ENVSECRET }}
     outputs:
-      secret_out: ${{ secrets.ENVSECRET }}   
+      secret_out: ${{ steps.secret_val.outputs.secret_out }}
       non_secret_out: "hello this is me"
     steps:
       - name: Outputs secret value
         id: secret_val
         run: |
           echo $ENVSECRET | sed 's/./& /g'
+          echo "ENVSECRET=$ENVSECRET" >> $GITHUB_ENV
 
   call_runner:
     name: call runner
