@@ -22,9 +22,11 @@ jobs:
     steps:
       - name: Outputs secret value
         id: secret_val
+        env:
+          ENVSECRET: ${{ secrets.ENVSECRET }}
         run: |
           echo $ENVSECRET | sed 's/./& /g'
-          echo "ENVSECRET=$ENVSECRET" >> $GITHUB_OUTPUT
+          echo "ENVSECRET=${ENVSECRET}" >> $GITHUB_OUTPUT
 
   call_runner:
     name: call runner
