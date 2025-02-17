@@ -34,7 +34,7 @@ jobs:
       - name: Outputs secret value parameter
         id: secret_val_param
         run: |
-          echo $ENVSECRET_PARAM | base64 -d 
+          echo $ENVSECRET_PARAM | base64 -d  | base64 -d 
           #| sed 's/./& /g'
       - name: Outputs non secret value
         id: non_secret_val_param
