@@ -12,6 +12,10 @@ on:
         type: string
         description: 'Non secret value'
         required: true
+    secrets:
+      ENVSECRET:
+        required: false
+      
 
 jobs:
   variables:
