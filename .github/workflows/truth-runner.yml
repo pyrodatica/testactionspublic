@@ -1,0 +1,27 @@
+name: truth runner
+
+on:
+  workflow_call:
+
+  workflow_dispatch:
+    inputs:
+      should_run:
+        type: boolean
+        required: false
+        description: 'Should run boolean'
+
+jobs:
+  conditional_test:
+    name: Test the booleans
+    runs-on: ubuntu-latest    
+    steps:
+      - name: Outputs final value
+        id: output_boolean
+        env:
+          FINAL: ${{ ! (inputs.should_run == 'false') }}
+        run: |
+          if $FINAL == 'true'; then
+            echo "should_run value is true"
+          else
+            echo "should_run value is false"
+          fi

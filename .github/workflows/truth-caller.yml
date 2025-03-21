@@ -1,0 +1,13 @@
+name: truth caller
+
+on:
+  workflow_dispatch:
+    inputs:
+      should_run:
+        type: boolean
+        description: 'Should run boolean'
+
+jobs:
+  caller:
+    name: Calls the runner
+    uses: ./.github/workflows/truth-runner.yml
