@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       should_run:
-        type: boolean
+        type: string
         required: false
         description: 'Should run boolean'
 
